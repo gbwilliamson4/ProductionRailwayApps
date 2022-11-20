@@ -1,0 +1,40 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if dateranges %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+        <thead>
+            <tr>
+                <th scope="col">Select Date Range</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+        {% for daterange in dateranges %}
+        <tr>
+            <td><a href="{% url 'income_detail' daterange_pk=daterange.pk %}">{{ daterange }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% else %}
+
+<p>Nothing to show.</p>
+
+{% endif %}
+
+
+</body>
+</html>
+
+{% endblock content %}

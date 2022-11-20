@@ -1,0 +1,70 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+{% extends "Inventories/base.html" %}
+{% block content %}
+<h3 class="container p-3 my-3">These are the things George needs.</h3>
+
+
+{% if needed_inventory_items %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Purchased</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in needed_inventory_items %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ item.item.total_price }}</td>
+            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
+            <td><form method="post" action="{% url 'purchased' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-success">Purchased</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+{% endif %}
+
+<br>
+<h3 class="container p-3 my-3">Items you have purchased and are waiting for reimbursement.</h3>
+{% if purchased_items %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Total Price</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in purchased_items %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ item.item.total_price }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+{% endif %}
+
+<h3 class="container p-3 my-3 border">Total of what George owes you: ${{ money_owed }}</h3>
+
+{% endblock content %}

@@ -1,0 +1,94 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+
+</head>
+<div class="row justify-content-center my-5">
+    <div class="col-lg-6">
+        <form action="{% url 'index' %}" method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary col-lg-12">Add Item</button>
+        </form>
+    </div>
+</div>
+
+{% if items %}
+    <table class="table table-striped container p-3 my-3 border" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price Per</th>
+            <th scope="col">$0.50</th>
+            <th scope="col">$0.65</th>
+            <th scope="col">$0.75</th>
+            <th scope="col">$0.85</th>
+            <th scope="col">$1.00</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.total_price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price_per }}</td>
+            <td>{{ item.margin_50 }}%</td>
+            <td>{{ item.margin_65 }}%</td>
+            <td>{{ item.margin_75 }}%</td>
+            <td>{{ item.margin_85 }}%</td>
+            <td>{{ item.margin_100 }}%</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+{% endif %}
+
+<style>
+
+
+
+</style>
+
+<!--<section id="contact">-->
+<!--    <div class="container-lg">-->
+<!--        <div class="text-center">-->
+<!--            <h2>Get in touch</h2>-->
+<!--            <p class="lead">Questions to ask? Fill out the form to contact me directly...</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="row justify-content-center my-5">-->
+<!--        <div class="col-lg-6">-->
+<!--            <form method="post" action="." class="form">-->
+<!--                {% csrf_token %}-->
+<!--                <label class="form-label">Name</label>-->
+<!--                <input type="text" class="form-control">-->
+
+<!--                <br>-->
+<!--                <label class="form-label">Total Price</label>-->
+<!--                <input type="text" class="form-control">-->
+
+<!--                <br>-->
+<!--                <label class="form-label">Quantity</label>-->
+<!--                <input type="text" class="form-control">-->
+
+<!--                <br>-->
+<!--                <button class="btn btn-primary" type="submit">Add Item</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--</section>-->
+
+
+
+{% endblock content %}

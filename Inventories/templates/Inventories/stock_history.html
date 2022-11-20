@@ -1,0 +1,36 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+
+</head>
+{% if history %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+        <thead>
+            <tr>
+                <th scope="col">Detail</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+        {% for item in history %}
+        <tr>
+            <td>{{ item }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% else %}
+
+<p>No history yet.</p>
+
+{% endif %}
+
+
+{% endblock content %}

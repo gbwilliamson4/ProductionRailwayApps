@@ -1,0 +1,46 @@
+{% extends 'lotteries/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Win Data</title>
+</head>
+<body>
+<h2 class="lottery-title">Winner Breakdowns</h2>
+
+
+<div class="table-container">
+    <div class="form-body">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    Scan Date
+                </th>
+                <th>
+                    Player
+                </th>
+
+            </tr>
+            {% for win in wins %}
+            <tr>
+                <th>
+                    {{ win.scan_date }}
+                </th>
+                <th>
+                    {{ win.player }}
+                </th>
+
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+</div>
+</body>
+{% endblock content %}
+</html>

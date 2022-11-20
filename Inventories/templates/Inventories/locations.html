@@ -1,0 +1,29 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+
+</head>
+{% if locations %}
+  {% for location in locations %}
+    <div class="container p-3 my-3 border bg-primary">
+      <h1 class="text text-center">{{ location }}</h1>
+        <form method="post" action="{% url 'add_stock_history' location.pk %}">
+          {% csrf_token %}
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary">Stocked</button>
+          </div>
+        </form>
+    </div>
+    <br><br>
+  {% endfor %}
+  {% else %}
+    <div class="container p-3 my-3 border bg-light">
+      <h1 class="text text-center">No Locations Added.</h1>
+    </div>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+
+</head>
+<div class="row justify-content-center my-5">
+    <div class="col-lg-6">
+        <form action="{% url 'needed_inventory' %}" method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary col-lg-12">Add</button>
+        </form>
+    </div>
+</div>
+
+{% if needed_inventory_items %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Purchase</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in needed_inventory_items %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ item.item.total_price }}</td>
+            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
+            <td><form method="post" action="{% url 'delete' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+            <td><form method="post" action="{% url 'approve' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-success">Purchased</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+{% endif %}
+
+<h3 class="container p-3 my-3 border">Total expected payment: ${{ money_owed }}</h3>
+{% endblock content %}

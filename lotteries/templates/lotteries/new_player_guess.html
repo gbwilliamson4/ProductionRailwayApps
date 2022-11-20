@@ -1,0 +1,146 @@
+{% extends 'lotteries/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+
+<h2 class="lottery-title">Input picks for today!</h2>
+
+<!-- <br> -->
+
+<div class="form-body">
+<div class="row row2 justify-content-left">
+    <div class="col-2">
+        <form action="{% url 'lotteries:new_player_guess' %}" method="post" class="form" class="col-md-1">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <br>
+            {% buttons %}
+                <button name="submit" class="btn btn-outline-primary">Add Guess</button>
+            {% endbuttons %}
+        </form>
+    </div>
+</div>
+<br>
+<br>
+
+<h2>Today's Guesses. Woo!</h2>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            Scan Date
+        </th>
+        <th>
+            Player
+        </th>
+        <th>
+            Non-Erisa
+        </th>
+        <th>
+            Erisa
+        </th>
+        <th>
+            Cafeteria
+        </th>
+        <th>
+            Operating
+        </th>
+        <th>
+            Total
+        </th>
+
+    </tr>
+
+    {% for guess in today_player_guesses %}
+        <tr>
+            <th>
+                {{ guess.scan_date }}
+            </th>
+            <th>
+                {{ guess.player }}
+            </th>
+            <th>
+                {{ guess.nonerisa }}
+            </th>
+            <th>
+                {{ guess.erisa }}
+            </th>
+            <th>
+                {{ guess.cafeteria }}
+            </th>
+            <th>
+                {{ guess.operating }}
+            </th>
+            <th>
+                {{ guess.totals }}
+            </th>
+
+        </tr>
+    {% empty %}
+        <h3>Not everybody playing has submitted yet.</h3>
+    {% endfor %}
+
+</table>
+
+<br>
+<br>
+
+<h2>Previous Player Guesses</h2>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            Scan Date
+        </th>
+        <th>
+            Player
+        </th>
+        <th>
+            Non-Erisa
+        </th>
+        <th>
+            Erisa
+        </th>
+        <th>
+            Cafeteria
+        </th>
+        <th>
+            Operating
+        </th>
+        <th>
+            Total
+        </th>
+
+    </tr>
+
+    {% for guess in player_guesses %}
+        <tr>
+            <th>
+                {{ guess.scan_date }}
+            </th>
+            <th>
+                {{ guess.player }}
+            </th>
+            <th>
+                {{ guess.nonerisa }}
+            </th>
+            <th>
+                {{ guess.erisa }}
+            </th>
+            <th>
+                {{ guess.cafeteria }}
+            </th>
+            <th>
+                {{ guess.operating }}
+            </th>
+            <th>
+                {{ guess.totals }}
+            </th>
+
+        </tr>
+    {% empty %}
+        <li>No numbers have been added yet.</li>
+    {% endfor %}
+</table>
+
+</div>
+
+{% endblock content %}

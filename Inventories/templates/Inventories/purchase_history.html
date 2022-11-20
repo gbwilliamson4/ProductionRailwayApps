@@ -1,0 +1,33 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vending Tracking App</title>
+
+</head>
+{% if p_history %}
+<div class="container p-3 my-3 border">
+    <table class="table table-striped" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Item Name</th>
+            <th scope="col">Purchase Date</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in p_history %}
+        <tr>
+            <td>{{ item.item.name }}</td>
+            <td>{{ item.purchase_date }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+{% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,134 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if items_card %}
+<div class="container p-3 my-3 border">
+    <h3>Card</h3>
+    <table class="table table-striped" cellpadding="1500">
+        <thead>
+            <tr>
+                <th scope="col">Date Range</th>
+                <th scope="col">Location</th>
+                <th scope="col">Transactions</th>
+                <th scope="col">Net Amnt</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+        {% for item in items_card %}
+        <tr>
+            <td>{{ item.daterange }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.transactions }}</td>
+            <td>{{ item.net_amnt }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Totals</th>
+            <td></td>
+            <td><strong>{ total transactions }</strong></td>
+            <td><strong>{ total money }</strong></td>
+        </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+
+{% else %}
+
+<p>Nothing to show.</p>
+
+{% endif %}
+
+{% if items_cash %}
+<div class="container p-3 my-3 border">
+    <h3>Cash</h3>
+    <table class="table table-striped" cellpadding="1500">
+        <thead>
+            <tr>
+                <th scope="col">Date Range</th>
+                <th scope="col">Location</th>
+                <th scope="col">Transactions</th>
+                <th scope="col">Net Amnt</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+        {% for item in items_cash %}
+        <tr>
+            <td>{{ item.daterange }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.transactions }}</td>
+            <td>{{ item.net_amnt }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Totals</th>
+            <td></td>
+            <td><strong>{ total transactions }</strong></td>
+            <td><strong>{ total money }</strong></td>
+        </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+{% else %}
+
+<p>Nothing to show.</p>
+
+{% endif %}
+
+{% if items_total %}
+<div class="container p-3 my-3 border">
+    <h3>Total</h3>
+    <table class="table table-striped" cellpadding="1500">
+        <thead>
+            <tr>
+                <th scope="col">Date Range</th>
+                <th scope="col">Location</th>
+                <th scope="col">Transactions</th>
+                <th scope="col">Net Amnt</th>
+            </tr>
+        </thead>
+        <tbody class="table">
+        {% for item in items_total %}
+        <tr>
+            <td>{{ item.daterange }}</td>
+            <td>{{ item.location }}</td>
+            <td>{{ item.transactions }}</td>
+            <td>{{ item.net_amnt }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Totals</th>
+            <td></td>
+            <td><strong>{ total transactions }</strong></td>
+            <td><strong>{ total money }</strong></td>
+        </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+{% else %}
+
+<p>Nothing to show.</p>
+
+{% endif %}
+
+</body>
+</html>
+
+{% endblock content %}

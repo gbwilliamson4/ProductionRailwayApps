@@ -1,0 +1,46 @@
+{% extends "lotteries/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1 class="lottery-title">Long live the Regime. Viva los Puercos!</h1>
+
+<div class="papa-container">
+<div class="data-container">
+<h2 class="data-header">Last 7 Days</h2>
+{% for win in wins_7 %}
+<p>{{ win.player_name }} - {{ win.win__player__count }}</p>
+{% endfor %}
+</div>
+
+<div class="data-container">
+<h2 class="data-header">Last 30 Days</h2>
+{% for win in wins_30 %}
+<p>{{ win.player_name }} - {{ win.win__player__count }}</p>
+{% endfor %}
+</div>
+
+<div class="data-container">
+<h2 class="data-header">Entire Period</h2>
+
+{% for win in wins_period %}
+<p>{{ win.player_name }} - {{ win.win__player__count }}</p>
+{% endfor %}
+</div>
+
+<div class="data-container">
+<h2 class="data-header">All time win data</h2>
+{% for win in wins_all %}
+<p>{{ win.player_name }} - {{ win.win__player__count }}</p>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>
+
+{% endblock content %}
