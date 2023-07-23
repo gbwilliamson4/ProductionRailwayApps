@@ -179,7 +179,14 @@ def win_data(request):
 def counting(request):
     # Get the object, get the value, increment by 1, save.
     the_count = Counting.objects.first()
-    print(the_count.current_count)
+
+    if the_count is None:
+        # Counting.objects.current_count
+        new_count = Counting(current_count=1)
+        new_count.save()
+        the_count = Counting.objects.first()
+
+    # print(the_count.current_count)
     the_count.current_count = the_count.current_count + 1
     the_count.save()
     context = {"the_count": the_count}
