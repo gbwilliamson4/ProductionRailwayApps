@@ -93,3 +93,10 @@ class Period_End_Dates(models.Model):
 
     def __str__(self):
         return str(self.period_end_date)
+
+
+class Counting(models.Model):
+    current_count = models.IntegerField()
+
+    def __str__(self):
+        return str(self.current_count)

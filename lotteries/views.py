@@ -174,3 +174,13 @@ def win_data(request):
     wins = Win.objects.order_by('-scan_date').all()[:30]
     context = {'wins': wins}
     return render(request, 'lotteries/win_data.html', context)
+
+
+def counting(request):
+    # Get the object, get the value, increment by 1, save.
+    the_count = Counting.objects.first()
+    print(the_count.current_count)
+    the_count.current_count = the_count.current_count + 1
+    the_count.save()
+    context = {"the_count": the_count}
+    return render(request, 'lotteries/countrefresh.html', context)

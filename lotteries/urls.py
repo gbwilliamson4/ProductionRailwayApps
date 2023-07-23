@@ -14,4 +14,5 @@ urlpatterns = [
     path('checkscan/', views.checkscan, name='checkscan'),
     path('new_player_guess/', views.new_player_guess, name='new_player_guess'),
     path('win_data/', views.win_data, name='win_data'),
+    path('counting/', views.counting, name='counting')
 ]
