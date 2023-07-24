@@ -191,3 +191,8 @@ def counting(request):
     the_count.save()
     context = {"the_count": the_count}
     return render(request, 'lotteries/countrefresh.html', context)
+
+def show_count(request):
+    the_count = Counting.objects.first()
+    context = {"the_count": the_count}
+    return render(request, 'lotteries/showcurrentcount.html', context)
